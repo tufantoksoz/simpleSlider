@@ -1,0 +1,96 @@
+@-webkit-keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+body {
+  background: #3A1C71;
+  background: -webkit-gradient(linear, left top, right top, from(#FFAF7B), color-stop(#D76D77), to(#3A1C71));
+  background: linear-gradient(to right, #FFAF7B, #D76D77, #3A1C71);
+}
+
+.container {
+  position: relative;
+  height: 400px;
+  width: 800px;
+  margin: 50px auto;
+}
+
+.slide {
+  height: 400px;
+  width: 800px;
+  margin: 50px auto;
+  display: none;
+}
+
+.slide img {
+  height: 400px;
+  width: 800px;
+}
+
+.active {
+  display: inline;
+  -webkit-animation: fadeIn .5s;
+          animation: fadeIn .5s;
+}
+
+.bullets {
+  position: absolute;
+  bottom: 10px;
+  width: 100%;
+  text-align: center;
+}
+
+.bullets span {
+  display: inline-block;
+  width: 12px;
+  height: 12px;
+  margin: 0 4px;
+  border-radius: 50%;
+  background-color: #FFFFFF;
+  cursor: pointer;
+  -webkit-transition: .2s;
+  transition: .2s;
+}
+
+.bullets span:hover {
+  background-color: #808080;
+}
+
+.activeDot {
+  background-color: #0096FF !important;
+}
+
+button {
+  position: absolute;
+  top: 50%;
+  cursor: pointer;
+  background-color: transparent;
+  border: none;
+  z-index: 1;
+  -webkit-transition: .2s;
+  transition: .2s;
+}
+
+button:hover {
+  background-color: #FFFFFF;
+  opacity: .6;
+}
+
+#btn-next {
+  right: 0;
+}
+/*# sourceMappingURL=style.css.map */

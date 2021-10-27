@@ -1,0 +1,70 @@
+$height: 400px
+$width: 800px
+
+@keyframes fadeIn
+    0%
+        opacity: 0
+
+    100%
+        opacity: 1
+
+body
+    background: #3A1C71
+    background: -webkit-linear-gradient(to right, #FFAF7B, #D76D77, #3A1C71)
+    background: linear-gradient(to right, #FFAF7B, #D76D77, #3A1C71)
+
+.container
+    position: relative
+    height: $height
+    width: $width
+    margin: 50px auto
+
+.slide
+    height: $height
+    width: $width
+    margin: 50px auto
+    display: none
+
+    img
+        height: $height
+        width: $width
+
+.active
+    display: inline
+    animation: fadeIn .5s
+
+.bullets
+    position: absolute
+    bottom: 10px
+    width: 100%
+    text-align: center
+
+    span
+        display: inline-block
+        width: 12px
+        height: 12px
+        margin: 0 4px
+        border-radius: 50%
+        background-color: #FFFFFF
+        cursor: pointer
+        transition: .2s
+        &:hover
+            background-color: #808080
+
+.activeDot
+    background-color: #0096FF !important
+
+button
+    position: absolute
+    top: 50%
+    cursor: pointer
+    background-color: transparent
+    border: none
+    z-index: 1
+    transition: .2s
+    &:hover
+        background-color: #FFFFFF
+        opacity: .6
+
+#btn-next
+    right: 0
