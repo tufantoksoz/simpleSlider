@@ -60,8 +60,10 @@ const dotClick = (i) => {
     bullets.children[i].classList.add('activeDot');
     const position = slides[i].getAttribute('style').replace(';', '').split(' ').slice(1);
     slider.setAttribute('style', `transform: translateX(-${position})`);
-    if (option.autoLoop)
+    if (option.autoLoop) {
         resetTime();
+        slideInterval = setInterval(nextSlide, option.intervalTime);
+    }
 };
 const slideEffect = (name, activeSlide) => {
     switch (name) {
