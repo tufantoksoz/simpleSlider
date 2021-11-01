@@ -7,8 +7,8 @@ const slideWidth = slides[0].getBoundingClientRect().width;
 let slideInterval;
 class slideOptions {
     constructor() {
-        this.autoLoop = false;
-        this.intervalTime = 3000;
+        this.autoLoop = true;
+        this.intervalTime = 1000;
     }
 }
 let option = new slideOptions();
@@ -41,13 +41,17 @@ const nextSlide = () => {
 };
 prev.onclick = () => {
     prevSlide();
-    if (option.autoLoop)
+    if (option.autoLoop) {
         resetTime();
+        slideInterval = setInterval(nextSlide, option.intervalTime);
+    }
 };
 next.onclick = () => {
     nextSlide();
-    if (option.autoLoop)
+    if (option.autoLoop) {
         resetTime();
+        slideInterval = setInterval(nextSlide, option.intervalTime);
+    }
 };
 const dotClick = (i) => {
     const [activeSlide, activeDot] = getActive();
@@ -84,9 +88,9 @@ const removeActive = (activeSlide, activeDot) => {
     activeSlide.classList.remove('active');
     activeDot.classList.remove('activeDot');
 };
+if (option.autoLoop)
+    slideInterval = setInterval(nextSlide, option.intervalTime);
 const resetTime = () => {
     clearInterval(slideInterval);
 };
-if (option.autoLoop)
-    slideInterval = setInterval(nextSlide, option.intervalTime);
 //# sourceMappingURL=main.js.map
