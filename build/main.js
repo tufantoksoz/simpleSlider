@@ -1,97 +1,103 @@
-const slider = document.querySelector('.slider');
-const slides = Array.from(slider.children);
-const bullets = document.querySelector('.bullets');
-const prev = document.getElementById('btn-prev');
-const next = document.getElementById('btn-next');
-const slideWidth = slides[0].getBoundingClientRect().width;
+let prev = null;
+let next = null;
 let slideInterval;
 class slideOptions {
-    constructor() {
+    constructor(autoLoop, delay) {
         this.autoLoop = true;
-        this.intervalTime = 1000;
+        this.delay = 3000;
+        this.autoLoop = autoLoop;
+        this.delay = delay;
     }
 }
-let option = new slideOptions();
-const setSlidePosition = (slide, index) => {
-    slide.setAttribute('style', `left: ${slideWidth * index + 'px;'}`);
-};
-slides.forEach(setSlidePosition);
-const loadBullets = () => {
-    for (let i = 0; i < slides.length; i++) {
-        const span = document.createElement('span');
-        bullets.appendChild(span);
-        span.setAttribute('onclick', `dotClick(${i})`);
-    }
-    bullets.children[0].classList.add('activeDot');
-};
-loadBullets();
-const prevSlide = () => {
-    const [activeSlide, activeDot] = getActive();
-    removeActive(activeSlide, activeDot);
-    activeSlide.previousElementSibling ? activeSlide.previousElementSibling.classList.add('active') : slides[slides.length - 1].classList.add('active');
-    activeDot.previousElementSibling ? activeDot.previousElementSibling.classList.add('activeDot') : bullets.children[bullets.children.length - 1].classList.add('activeDot');
-    slideEffect(prevSlide.name, activeSlide);
-};
-const nextSlide = () => {
-    const [activeSlide, activeDot] = getActive();
-    removeActive(activeSlide, activeDot);
-    activeSlide.nextElementSibling ? activeSlide.nextElementSibling.classList.add('active') : slides[0].classList.add('active');
-    activeDot.nextElementSibling ? activeDot.nextElementSibling.classList.add('activeDot') : bullets.children[0].classList.add('activeDot');
-    slideEffect(nextSlide.name, activeSlide);
-};
-prev.onclick = () => {
-    prevSlide();
-    if (option.autoLoop) {
-        resetTime();
-        slideInterval = setInterval(nextSlide, option.intervalTime);
-    }
-};
-next.onclick = () => {
-    nextSlide();
-    if (option.autoLoop) {
-        resetTime();
-        slideInterval = setInterval(nextSlide, option.intervalTime);
-    }
-};
-const dotClick = (i) => {
-    const [activeSlide, activeDot] = getActive();
-    removeActive(activeSlide, activeDot);
-    slides[i].classList.add('active');
-    bullets.children[i].classList.add('activeDot');
-    const position = slides[i].getAttribute('style').replace(';', '').split(' ').slice(1);
-    slider.setAttribute('style', `transform: translateX(-${position})`);
-    if (option.autoLoop) {
-        resetTime();
-        slideInterval = setInterval(nextSlide, option.intervalTime);
-    }
-};
-const slideEffect = (name, activeSlide) => {
-    switch (name) {
-        case 'prevSlide':
-            {
-                const position = activeSlide.previousElementSibling ? activeSlide.previousElementSibling.getAttribute('style').replace(';', '').split(' ').slice(1) : slides[slides.length - 1].getAttribute('style').replace(';', '').split(' ').slice(1);
+let init = (container, option) => {
+    let containerElement = document.querySelector(container);
+    let slider = containerElement.querySelector('.slider');
+    let slides = containerElement.querySelectorAll('.slide');
+    let bullets = containerElement.querySelector('.bullets');
+    let dots = Array.from(bullets.children);
+    let slideWidth = slides[0].getBoundingClientRect().width;
+    option = new slideOptions(option.autoLoop, option.delay);
+    prev = containerElement.querySelector('#btn-prev');
+    next = containerElement.querySelector('#btn-next');
+    containerElement.setAttribute('style', 'position: relative; height: 400px; width: 800px; margin: 50px auto; overflow: hidden;');
+    const setSlidePosition = (slide, index) => {
+        slide.setAttribute('style', `left: ${slideWidth * index + 'px;'}`);
+    };
+    slides.forEach(setSlidePosition);
+    prev.onclick = () => {
+        prevSlide(containerElement);
+        if (option.autoLoop) {
+            resetTime();
+            slideInterval = setInterval(nextSlide, option.delay);
+        }
+    };
+    next.onclick = () => {
+        nextSlide(containerElement);
+        if (option.autoLoop) {
+            resetTime();
+            slideInterval = setInterval(nextSlide, option.delay);
+        }
+    };
+    const prevSlide = (containerElement) => {
+        const [activeSlide, activeDot] = getActive(containerElement);
+        removeActive(activeSlide, activeDot);
+        activeSlide.previousElementSibling ? activeSlide.previousElementSibling.classList.add('active') : slides[slides.length - 1].classList.add('active');
+        activeDot.previousElementSibling ? activeDot.previousElementSibling.classList.add('activeDot') : bullets.children[bullets.children.length - 1].classList.add('activeDot');
+        slideEffect(prevSlide.name, activeSlide);
+    };
+    const nextSlide = (containerElement) => {
+        let [activeSlide, activeDot] = getActive(containerElement);
+        removeActive(activeSlide, activeDot);
+        activeSlide.nextElementSibling ? activeSlide.nextElementSibling.classList.add('active') : slider.children[0].classList.add('active');
+        activeDot.nextElementSibling ? activeDot.nextElementSibling.classList.add('activeDot') : bullets.children[0].classList.add('activeDot');
+        slideEffect(nextSlide.name, activeSlide);
+    };
+    // For bullets click
+    for (let i = 0; i < dots.length; i++) {
+        ((index) => {
+            bullets.children[i].addEventListener('click', () => {
+                let [activeSlide, activeDot] = getActive(containerElement);
+                removeActive(activeSlide, activeDot);
+                slides[index].classList.add('active');
+                bullets.children[index].classList.add('activeDot');
+                let position = slides[index].getAttribute('style').replace(';', '').split(' ').slice(1);
                 slider.setAttribute('style', `transform: translateX(-${position})`);
-            }
-            break;
-        case 'nextSlide':
-            {
-                const position = activeSlide.nextElementSibling ? activeSlide.nextElementSibling.getAttribute('style').replace(';', '').split(' ').slice(1) : slides[0].getAttribute('style').replace(';', '').split(' ').slice(1);
-                slider.setAttribute('style', `transform: translateX(-${position})`);
-            }
-            break;
+                if (option.autoLoop) {
+                    resetTime();
+                    slideInterval = setInterval(nextSlide, option.delay);
+                }
+            });
+        })(i);
     }
+    const slideEffect = (name, activeSlide) => {
+        switch (name) {
+            case 'prevSlide':
+                {
+                    const position = activeSlide.previousElementSibling ? activeSlide.previousElementSibling.getAttribute('style').replace(';', '').split(' ').slice(1) : slides[slides.length - 1].getAttribute('style').replace(';', '').split(' ').slice(1);
+                    slider.setAttribute('style', `transform: translateX(-${position})`);
+                }
+                break;
+            case 'nextSlide':
+                {
+                    const position = activeSlide.nextElementSibling ? activeSlide.nextElementSibling.getAttribute('style').replace(';', '').split(' ').slice(1) : slides[0].getAttribute('style').replace(';', '').split(' ').slice(1);
+                    slider.setAttribute('style', `transform: translateX(-${position})`);
+                }
+                break;
+        }
+    };
+    if (option.autoLoop)
+        slideInterval = setInterval(() => nextSlide(containerElement), option.delay);
 };
-const getActive = () => {
-    const activeSlide = document.querySelector('.active');
-    const activeDot = document.querySelector('.activeDot');
+const getActive = (containerElement) => {
+    let activeSlide = containerElement.querySelector('.active');
+    let activeDot = containerElement.querySelector('.activeDot');
     return [activeSlide, activeDot];
 };
 const removeActive = (activeSlide, activeDot) => {
     activeSlide.classList.remove('active');
     activeDot.classList.remove('activeDot');
+    return [activeSlide, activeDot];
 };
-if (option.autoLoop)
-    slideInterval = setInterval(nextSlide, option.intervalTime);
 const resetTime = () => {
     clearInterval(slideInterval);
 };

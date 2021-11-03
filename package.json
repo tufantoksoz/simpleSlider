@@ -9,6 +9,7 @@
   "author": "Tufan",
   "license": "ISC",
   "dependencies": {
+    "nodemon": "^2.0.14",
     "sass": "^1.43.2",
     "typescript": "^4.4.4"
   }

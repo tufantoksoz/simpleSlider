@@ -4,7 +4,7 @@ body {
   background: linear-gradient(to right, #FFAF7B, #D76D77, #3A1C71);
 }
 
-.container {
+.container-1 {
   position: relative;
   height: 400px;
   width: 800px;
@@ -31,6 +31,23 @@ body {
   width: 800px;
 }
 
+.btnDot {
+  display: inline-block;
+  width: 12px;
+  height: 12px;
+  margin: 0 4px;
+  border-radius: 50%;
+  background-color: #FFFFFF;
+  cursor: pointer;
+  -webkit-transition: .2s;
+  transition: .2s;
+  border: none;
+}
+
+.btnDot:hover {
+  background-color: #808080;
+}
+
 .bullets {
   position: absolute;
   bottom: 10px;
@@ -48,6 +65,7 @@ body {
   cursor: pointer;
   -webkit-transition: .2s;
   transition: .2s;
+  border: none;
 }
 
 .bullets span:hover {
@@ -58,7 +76,7 @@ body {
   background-color: #0096FF !important;
 }
 
-button {
+.indicators {
   position: absolute;
   top: 50%;
   cursor: pointer;
@@ -69,7 +87,7 @@ button {
   transition: .2s;
 }
 
-button:hover {
+.indicators:hover {
   background-color: #FFFFFF;
   opacity: .6;
 }

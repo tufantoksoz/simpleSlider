@@ -10,12 +10,12 @@
 </head>
 
 <body>
-    <div class="container">
+    <div class="container-1">
 
-        <button id="btn-prev">
+        <button class="indicators" id="btn-prev">
             <i class="fas fa-angle-left fa-3x"></i>
         </button>
-        <button id="btn-next">
+        <button class="indicators" id="btn-next">
             <i class="fas fa-angle-right fa-3x"></i>
         </button>
 
@@ -34,10 +34,158 @@
             </div>
         </div>
 
-        <div class="bullets"></div>
+        <div class="bullets">
+            <button class="btnDot activeDot"></button>
+            <button class="btnDot"></button>
+            <button class="btnDot"></button>
+            <button class="btnDot"></button>
+        </div>
 
     </div>
+
+    <div class="container-2">
+
+        <button class="indicators" id="btn-prev">
+            <i class="fas fa-angle-left fa-3x"></i>
+        </button>
+        <button class="indicators" id="btn-next">
+            <i class="fas fa-angle-right fa-3x"></i>
+        </button>
+
+        <div class="slider">
+            <div class="slide active">
+                <img src="images/img-1.jpg" alt="">
+            </div>
+            <div class="slide">
+                <img src="images/img-2.jpg" alt="">
+            </div>
+            <div class="slide">
+                <img src="images/img-3.jpg" alt="">
+            </div>
+            <div class="slide">
+                <img src="images/img-4.jpg" alt="">
+            </div>
+        </div>
+
+        <div class="bullets">
+            <button class="btnDot activeDot"></button>
+            <button class="btnDot"></button>
+            <button class="btnDot"></button>
+            <button class="btnDot"></button>
+        </div>
+
+    </div>
+
+    <div class="container-3">
+
+        <button class="indicators" id="btn-prev">
+            <i class="fas fa-angle-left fa-3x"></i>
+        </button>
+        <button class="indicators" id="btn-next">
+            <i class="fas fa-angle-right fa-3x"></i>
+        </button>
+
+        <div class="slider">
+            <div class="slide active">
+                <img src="images/img-1.jpg" alt="">
+            </div>
+            <div class="slide">
+                <img src="images/img-2.jpg" alt="">
+            </div>
+            <div class="slide">
+                <img src="images/img-3.jpg" alt="">
+            </div>
+            <div class="slide">
+                <img src="images/img-4.jpg" alt="">
+            </div>
+        </div>
+
+        <div class="bullets">
+            <button class="btnDot activeDot"></button>
+            <button class="btnDot"></button>
+            <button class="btnDot"></button>
+            <button class="btnDot"></button>
+        </div>
+
+    </div>
+
+    <div class="container-4">
+
+        <button class="indicators" id="btn-prev">
+            <i class="fas fa-angle-left fa-3x"></i>
+        </button>
+        <button class="indicators" id="btn-next">
+            <i class="fas fa-angle-right fa-3x"></i>
+        </button>
+
+        <div class="slider">
+            <div class="slide active">
+                <img src="images/img-1.jpg" alt="">
+            </div>
+            <div class="slide">
+                <img src="images/img-2.jpg" alt="">
+            </div>
+            <div class="slide">
+                <img src="images/img-3.jpg" alt="">
+            </div>
+            <div class="slide">
+                <img src="images/img-4.jpg" alt="">
+            </div>
+        </div>
+
+        <div class="bullets">
+            <button class="btnDot activeDot"></button>
+            <button class="btnDot"></button>
+            <button class="btnDot"></button>
+            <button class="btnDot"></button>
+        </div>
+
+    </div>
+
+    <div class="container-5">
+
+        <button class="indicators" id="btn-prev">
+            <i class="fas fa-angle-left fa-3x"></i>
+        </button>
+        <button class="indicators" id="btn-next">
+            <i class="fas fa-angle-right fa-3x"></i>
+        </button>
+
+        <div class="slider">
+            <div class="slide active">
+                <img src="images/img-1.jpg" alt="">
+            </div>
+            <div class="slide">
+                <img src="images/img-2.jpg" alt="">
+            </div>
+            <div class="slide">
+                <img src="images/img-3.jpg" alt="">
+            </div>
+            <div class="slide">
+                <img src="images/img-4.jpg" alt="">
+            </div>
+        </div>
+
+        <div class="bullets">
+            <button class="btnDot activeDot"></button>
+            <button class="btnDot"></button>
+            <button class="btnDot"></button>
+            <button class="btnDot"></button>
+        </div>
+
+    </div>
+
     <script type="text/javascript" src="build/main.js"></script>
+
+    <script type="text/javascript">
+
+        init('.container-1',{autoLoop: false, delay: 2000});
+        init('.container-2',{autoLoop: false, delay: 2000});
+        init('.container-3',{autoLoop: true, delay: 5000});
+        init('.container-4',{autoLoop: false, delay: 2000});
+        init('.container-5',{autoLoop: true, delay: 3000});
+
+    </script>
 
 </body>
 

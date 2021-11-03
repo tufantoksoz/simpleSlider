@@ -1,5 +1,6 @@
 {
     "compilerOptions": {
+        "rootDir": "src",
         "outDir": "./build/",
         "target": "es6",
         "moduleResolution": "node",
@@ -11,7 +12,9 @@
         "strictNullChecks": false,
         "lib": [
             "es2016",
-            "dom"
+            "dom",
+            "ES6",
+            "ES2016.Array.Include"
         ]
     },
     "include": [
